@@ -2,11 +2,15 @@ package com.example.instagramui
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -37,11 +41,7 @@ fun ProfileScreen(
             .fillMaxSize()
             .background(Color.White)
     ) {
-     TopBar(
-         name = "Sohail_shah_",
-         modifier = Modifier
-             .padding(10.dp)
-     )
+     MyTopAppBar(userName = "Sohail SHah")
      Spacer(modifier = Modifier.height(4.dp))
      ProfileSection()
         Spacer(modifier = Modifier.height(25.dp))
@@ -125,45 +125,60 @@ fun ProfileScreen(
 }
 
 @Composable
-fun TopBar(
-    name: String,
+fun MyTopAppBar(
+    userName: String,
     modifier: Modifier = Modifier
-){
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceAround,
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(10.dp)
+) {
+    TopAppBar(
+        title = {
+            Row{
+                Text(
+                    text = userName,
+                    overflow = TextOverflow.Ellipsis,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp,
+                )
+                Icon(
+                    imageVector = Icons.Default.ArrowDropDown,
+                    contentDescription = "down"
+                )
+            }
 
-    ) {
-        Icon(
-            imageVector = Icons.Default.ArrowBack,
-            contentDescription = "back",
-            tint = Color.Black,
-            modifier = modifier.size(24.dp)
-            )
-        Text(
-            text = name,
-            overflow = TextOverflow.Ellipsis,
-            fontWeight = FontWeight.Bold,
-            fontSize = 20.sp
-        )
-        Icon(
-            painter = painterResource(id = R.drawable.bell_icon),
-            contentDescription = "bell",
-            tint = Color.Black,
-            modifier = modifier.size(24.dp)
-        )
-        Icon(
-            painter = painterResource(id = R.drawable.dot_menu),
-            contentDescription = "dot menu  ",
-            tint = Color.Black,
-            modifier = modifier.size(20.dp)
-        )
-    }
+        },
+        backgroundColor = Color.White,
+        elevation = 0.dp,
+        navigationIcon = {
+            IconButton(onClick = {}) {
+                Icon(
+                    imageVector = Icons.Default.ArrowBack,
+                    contentDescription = "back",
+                    tint = Color.Black,
+
+                    )
+            }
+        },
+        actions = {
+            IconButton(onClick = {}) {
+                Icon(
+                    painter = painterResource(id = R.drawable.bell_icon),
+                    contentDescription = "bell",
+                    tint = Color.Black,
+                    modifier = modifier.size(24.dp)
+
+                )
+            }
+            IconButton(onClick = {}) {
+                Icon(
+                    painter = painterResource(id = R.drawable.dot_menu),
+                    contentDescription = "dot menu  ",
+                    tint = Color.Black,
+                    modifier = modifier.size(18.dp)
+
+                )
+            }
+        }
+    )
 }
-
 @Composable
 fun ProfileSection(
     modifier: Modifier = Modifier
@@ -211,8 +226,8 @@ fun StatSection(
         horizontalArrangement = Arrangement.SpaceAround,
         modifier = modifier
     ) {
-        ProfileStat(numberText = "600", textDesc = "Posts")
-        ProfileStat(numberText = "1M", textDesc = "Followers")
+        ProfileStat(numberText = "15", textDesc = "Posts")
+        ProfileStat(numberText = "100K", textDesc = "Followers")
         ProfileStat(numberText = "0", textDesc = "Following")
     }
 }
