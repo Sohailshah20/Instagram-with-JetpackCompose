@@ -147,16 +147,16 @@ fun MyTopAppBar(
         },
         backgroundColor = Color.White,
         elevation = 0.dp,
-        navigationIcon = {
-            IconButton(onClick = {}) {
-                Icon(
-                    imageVector = Icons.Default.ArrowBack,
-                    contentDescription = "back",
-                    tint = Color.Black,
-
-                    )
-            }
-        },
+//        navigationIcon = {
+//            IconButton(onClick = {}) {
+//                Icon(
+//                    imageVector = Icons.Default.ArrowBack,
+//                    contentDescription = "back",
+//                    tint = Color.Black,
+//
+//                    )
+//            }
+//        },
         actions = {
             IconButton(onClick = {}) {
                 Icon(
@@ -244,29 +244,28 @@ fun ButtonSection(
             .padding(horizontal = 10.dp)
     ) {
         ActionButton(
-            text = "Following",
-            icon = Icons.Default.KeyboardArrowDown,
+            text = "Edit Profile",
             modifier = Modifier
-                .defaultMinSize(minWidth = minWidth)
+                .fillMaxWidth()
                 .height(height)
         )
-        ActionButton(
-            text = "Message",
-            modifier = Modifier
-                .defaultMinSize(minWidth = minWidth)
-                .height(height)
-        )
-        ActionButton(
-            text = "Email",
-            modifier = Modifier
-                .defaultMinSize(minWidth = minWidth)
-                .height(height)
-        )
-        ActionButton(
-            icon = Icons.Default.KeyboardArrowDown,
-            modifier = Modifier
-                .size(height)
-        )
+//        ActionButton(
+//            text = "Message",
+//            modifier = Modifier
+//                .defaultMinSize(minWidth = minWidth)
+//                .height(height)
+//        )
+//        ActionButton(
+//            text = "Email",
+//            modifier = Modifier
+//                .defaultMinSize(minWidth = minWidth)
+//                .height(height)
+//        )
+//        ActionButton(
+//            icon = Icons.Default.KeyboardArrowDown,
+//            modifier = Modifier
+//                .size(height)
+//        )
     }
 }
 
