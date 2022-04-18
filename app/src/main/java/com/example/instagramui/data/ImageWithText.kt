@@ -1,4 +1,4 @@
-package com.example.instagramui
+package com.example.instagramui.data
 
 import androidx.compose.ui.graphics.painter.Painter
 

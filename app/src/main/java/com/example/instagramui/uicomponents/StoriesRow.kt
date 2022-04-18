@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,17 +13,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.instagramui.data.ImageWithText
-import com.example.instagramui.ui.theme.textColor
 
 @Composable
-fun HighlightsSection(
+fun StoriesRow(
     modifier: Modifier = Modifier,
-    highlights: List<ImageWithText>
+    stories: List<ImageWithText>
 ){
     LazyRow(
         modifier = modifier
     ){
-        items(highlights.size){
+        items(stories.size){
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center,
@@ -32,14 +30,13 @@ fun HighlightsSection(
                     .padding(start = 10.dp,end = 10.dp)
             ) {
                 RoundImage(
-                    image =  highlights[it].image,
+                    image =  stories[it].image,
                     modifier = Modifier.size(70.dp)
                 )
                 Text(
-                    text = highlights[it].text,
+                    text = stories[it].text,
                     overflow = TextOverflow.Ellipsis,
-                    textAlign = TextAlign.Center,
-                    color  = MaterialTheme.colors.textColor
+                    textAlign = TextAlign.Center
                 )
             }
         }

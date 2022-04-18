@@ -3,13 +3,15 @@ package com.example.instagramui.uicomponents
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.instagramui.ImageWithText
+import com.example.instagramui.data.ImageWithText
+import com.example.instagramui.ui.theme.textColor
 
 @Composable
 fun PostTabView(
@@ -24,7 +26,7 @@ fun PostTabView(
     TabRow(
         selectedTabIndex = selectedTabIndex,
         backgroundColor = Color.Transparent,
-        contentColor = Color.Black,
+        contentColor =  MaterialTheme.colors.textColor,
         modifier = modifier
     ) {
         imageWithText.forEachIndexed{ index, item ->
@@ -43,7 +45,7 @@ fun PostTabView(
                     tint = if(selectedTabIndex == index) Color.Black else inactiveColor,
                     modifier = Modifier
                         .padding(10.dp)
-                        .size(20.dp)
+                        .size(24.dp)
 
                 )
             }

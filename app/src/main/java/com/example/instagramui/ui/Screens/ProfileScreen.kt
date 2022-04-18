@@ -2,16 +2,10 @@ package com.example.instagramui
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -26,11 +20,17 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.instagramui.data.ImageWithText
+import com.example.instagramui.ui.theme.backgroundColor
+import com.example.instagramui.ui.theme.textColor
 import com.example.instagramui.uicomponents.*
+import com.ramcosta.composedestinations.annotation.Destination
 
 @ExperimentalFoundationApi
+@Destination
 @Composable
 fun ProfileScreen(
+//    navigator: DestinationsNavigator,
     modifier: Modifier = Modifier
 ){
     var selectedTabIndex by remember {
@@ -41,7 +41,7 @@ fun ProfileScreen(
             .fillMaxSize()
             .background(Color.White)
     ) {
-     MyTopAppBar(userName = "Sohail SHah")
+     MyTopAppBar(userName = "Sohail Shah")
      Spacer(modifier = Modifier.height(4.dp))
      ProfileSection()
         Spacer(modifier = Modifier.height(25.dp))
@@ -91,7 +91,7 @@ fun ProfileScreen(
                     text = "IGTV"
                 ),
                 ImageWithText(
-                    image = painterResource(id = R.drawable.profile),
+                    image = painterResource(id = R.drawable.ic_tags),
                     text = "Profile"
                 ),
             )
@@ -137,15 +137,17 @@ fun MyTopAppBar(
                     overflow = TextOverflow.Ellipsis,
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
+                    color = MaterialTheme.colors.textColor
                 )
                 Icon(
                     imageVector = Icons.Default.ArrowDropDown,
-                    contentDescription = "down"
+                    contentDescription = "down",
+                    tint = MaterialTheme.colors.textColor
                 )
             }
 
         },
-        backgroundColor = Color.White,
+        backgroundColor = MaterialTheme.colors.backgroundColor,
         elevation = 0.dp,
 //        navigationIcon = {
 //            IconButton(onClick = {}) {
@@ -162,7 +164,7 @@ fun MyTopAppBar(
                 Icon(
                     painter = painterResource(id = R.drawable.bell_icon),
                     contentDescription = "bell",
-                    tint = Color.Black,
+                    tint = MaterialTheme.colors.textColor,
                     modifier = modifier.size(24.dp)
 
                 )
@@ -171,7 +173,7 @@ fun MyTopAppBar(
                 Icon(
                     painter = painterResource(id = R.drawable.dot_menu),
                     contentDescription = "dot menu  ",
-                    tint = Color.Black,
+                    tint = MaterialTheme.colors.textColor,
                     modifier = modifier.size(18.dp)
 
                 )

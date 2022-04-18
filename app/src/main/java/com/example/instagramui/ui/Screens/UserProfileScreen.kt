@@ -1,17 +1,17 @@
-package com.example.instagramui.Screens
+package com.example.instagramui.ui.Screens
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.Lock
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,25 +19,31 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.instagramui.*
 import com.example.instagramui.R
+import com.example.instagramui.data.ImageWithText
 import com.example.instagramui.uicomponents.*
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @ExperimentalFoundationApi
+@Destination
 @Composable
 fun UserProfileScreen(
+    navigator: DestinationsNavigator,
     modifier: Modifier = Modifier
 ){
     var selectedTabIndex by remember {
         mutableStateOf(0)
     }
+    val state = rememberScrollState()
+
     Column(
         modifier = modifier
             .fillMaxSize()
             .background(Color.White)
+            .verticalScroll(state)
     ) {
         MyTopAppBar(userName = "Random User")
         Spacer(modifier = modifier.height(4.dp))
@@ -267,9 +273,9 @@ fun UserButtonSection(
 }
 
 
-@ExperimentalFoundationApi
-@Composable
-@Preview
-fun testPreview(){
-    UserProfileScreen()
-}
+//@ExperimentalFoundationApi
+//@Composable
+//@Preview
+//fun testPreview(){
+//    UserProfileScreen()
+//}
