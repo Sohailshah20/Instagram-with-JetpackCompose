@@ -21,23 +21,20 @@ import com.example.instagramui.ui.theme.textColor
 
 @Composable
 fun PostItem(
-    image: String,
-    user: User,
-    likesCount: Int,
+    post: Post
 ){
     Column{
-        PostTopBar(image = user.image, name = user.name)
-        PostImage(image = image)
+        PostTopBar(post = post)
+        PostImage(post = post)
         PostActionsRow()
-        PostLikesCount(likesCount = likesCount)
+        PostLikesCount(post = post)
     }
 }
 
 @Composable
 fun PostTopBar(
     modifier: Modifier = Modifier,
-    image: String,
-    name: String
+    post: Post
 ){
     Row(
         modifier = modifier
@@ -52,10 +49,10 @@ fun PostTopBar(
                 .size(30.dp)
                 .weight(1f)
                 ,
-            image = rememberImagePainter(image)
+            image = rememberImagePainter(post.user.image)
         )
         Text(
-            text = name,
+            text = post.user.name,
             modifier = modifier
                 .weight(8f)
                 .padding(start = 5.dp)
@@ -143,7 +140,7 @@ fun PostActionsRow(
 @Composable
 fun PostImage (
     modifier: Modifier = Modifier,
-    image: String
+    post: Post
 ){
     Box(
         modifier = modifier
@@ -154,7 +151,7 @@ fun PostImage (
         Image(
             modifier = Modifier
                 .fillMaxSize(),
-            painter = rememberImagePainter(image),
+            painter = rememberImagePainter(post.image),
             contentDescription = null
         )
     }
@@ -163,7 +160,7 @@ fun PostImage (
 @Composable
 fun PostLikesCount(
     modifier: Modifier = Modifier,
-    likesCount: Int
+    post: Post
 ){
     Row(
         modifier = modifier
@@ -174,7 +171,7 @@ fun PostLikesCount(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = likesCount.toString(),
+            text = post.likesCount.toString(),
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colors.textColor
         )
