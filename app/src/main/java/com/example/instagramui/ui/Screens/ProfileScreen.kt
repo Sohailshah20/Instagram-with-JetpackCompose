@@ -20,17 +20,18 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.instagramui.data.ImageWithText
+import com.example.instagramui.models.ImageWithText
 import com.example.instagramui.ui.theme.backgroundColor
 import com.example.instagramui.ui.theme.textColor
 import com.example.instagramui.uicomponents.*
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @ExperimentalFoundationApi
 @Destination
 @Composable
 fun ProfileScreen(
-//    navigator: DestinationsNavigator,
+    navigator: DestinationsNavigator,
     modifier: Modifier = Modifier
 ){
     var selectedTabIndex by remember {
@@ -271,9 +272,9 @@ fun ButtonSection(
     }
 }
 
-@ExperimentalFoundationApi
-@Composable
-@Preview
-fun testPreview(){
-    ProfileScreen()
-}
+//@ExperimentalFoundationApi
+//@Composable
+//@Preview
+//fun testPreview(){
+//    ProfileScreen()
+//}
