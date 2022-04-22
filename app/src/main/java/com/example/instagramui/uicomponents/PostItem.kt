@@ -1,15 +1,13 @@
-package com.example.instagramui.uicomponents
+ package com.example.instagramui.uicomponents
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -24,10 +22,12 @@ fun PostItem(
     post: Post
 ){
     Column{
+        Divider(thickness = 0.5.dp)
         PostTopBar(post = post)
         PostImage(post = post)
         PostActionsRow()
         PostLikesCount(post = post)
+        Divider(thickness = 0.5.dp)
     }
 }
 
@@ -46,7 +46,7 @@ fun PostTopBar(
         Spacer(modifier = modifier.width(5.dp))
         RoundImage(
             modifier = modifier
-                .size(30.dp)
+                .size(40.dp)
                 .weight(1f)
                 ,
             image = rememberImagePainter(post.user.image)
@@ -55,17 +55,19 @@ fun PostTopBar(
             text = post.user.name,
             modifier = modifier
                 .weight(8f)
-                .padding(start = 5.dp)
+                .padding(start = 10.dp),
+            fontWeight = FontWeight.Bold
         )
         IconButton(onClick = { }) {
             Icon(
-                painter = painterResource(R.drawable.ic_baseline_more_horiz_24),
+                painter = painterResource(R.drawable.dot_menu),
                 contentDescription = "menu",
             tint = MaterialTheme.colors.textColor)
         }
 
 
     }
+
 }
 
 @Composable
@@ -85,7 +87,8 @@ fun PostActionsRow(
             Row(
                 modifier = modifier
                     .fillMaxHeight()
-                    .weight(1f),
+                    .weight(1f)
+                    .padding(horizontal = 5.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 IconButton(onClick = { }) {
@@ -146,7 +149,8 @@ fun PostImage (
         modifier = modifier
             .fillMaxHeight()
             .height(300.dp),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
+
     ) {
         Image(
             modifier = Modifier
@@ -171,7 +175,7 @@ fun PostLikesCount(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = post.likesCount.toString(),
+            text = post.likesCount.toString().plus(" likes"),
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colors.textColor
         )

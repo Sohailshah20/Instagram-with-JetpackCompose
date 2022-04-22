@@ -62,9 +62,10 @@ fun HomeScreen(
             )
         ),
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxWidth(),
         )
         Spacer(modifier = Modifier.height(10.dp))
+        Divider(thickness = 0.5.dp)
         LazyColumn{
             itemsIndexed(posts){ _, post ->
                 PostItem(post = post)

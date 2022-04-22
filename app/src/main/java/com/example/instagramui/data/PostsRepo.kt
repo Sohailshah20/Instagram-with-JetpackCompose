@@ -22,7 +22,7 @@ object PostsRepo {
                     username = names[index],
                     image = "https://randomuser.me/api/portraits/men/${index + 1}.jpg"
                 ),
-                likesCount = index + 100,
+                likesCount = index+100 ,
             )
             posts.add(post)
         }

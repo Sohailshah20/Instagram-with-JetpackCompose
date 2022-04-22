@@ -170,7 +170,7 @@ fun MyTopAppBar(
             }
             IconButton(onClick = {}) {
                 Icon(
-                    painter = painterResource(id = R.drawable.dot_menu),
+                    painter = painterResource(id = R.drawable.ic_baseline_menu_24),
                     contentDescription = "dot menu  ",
                     tint = Color.Black,
                     modifier = modifier.size(18.dp)
