@@ -6,15 +6,22 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.FontWeight.Companion.Bold
+import androidx.compose.ui.text.font.FontWeight.Companion.Normal
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.example.instagramui.R
 import com.example.instagramui.models.Post
 import com.example.instagramui.models.User
+import com.example.instagramui.ui.theme.lightGrey
 import com.example.instagramui.ui.theme.textColor
 
 @Composable
@@ -27,7 +34,12 @@ fun PostItem(
         PostImage(post = post)
         PostActionsRow()
         PostLikesCount(post = post)
-        Divider(thickness = 0.5.dp)
+        PostCaption(post = post)
+        Spacer(modifier = Modifier.height(2.dp))
+        PostCommentsCount(post = post)
+        Spacer(modifier = Modifier.height(4.dp))
+        PostTimeStamp(post = post)
+        Spacer(modifier = Modifier.height(10.dp))
     }
 }
 
@@ -88,7 +100,7 @@ fun PostActionsRow(
                 modifier = modifier
                     .fillMaxHeight()
                     .weight(1f)
-                    .padding(horizontal = 5.dp),
+                    ,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 IconButton(onClick = { }) {
@@ -177,45 +189,93 @@ fun PostLikesCount(
         Text(
             text = post.likesCount.toString().plus(" likes"),
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colors.textColor
+            color = MaterialTheme.colors.textColor,
+            fontSize = 16.sp
         )
     }
 }
 
-//@Composable
-//fun PostCaption(
-//    modifier: Modifier = Modifier,
-//    description: String
-//){
-//    Row(
-//        modifier = modifier
-//            .fillMaxWidth()
-//            .wrapContentHeight()
-//            .padding(horizontal = 10.dp)
-//        ,
-//        verticalAlignment = Alignment.CenterVertically
-//    ) {
-//        Text(
-//            text = buildAnnotatedString {
-//                val boldStyle = SpanStyle(
-//                    color = MaterialTheme.colors.textColor,
-//                    fontWeight = Bold)
-//                val normalStyle = SpanStyle(
-//                    color = MaterialTheme.colors.textColor,
-//                    fontWeight = Normal
-//                )
-//                pushStyle(boldStyle)
-//                append("Username")
-//                append(" ")
-//                if (description.isNotEmpty()){
-//                    pushStyle(normalStyle)
-//                    append("this is the description this is the description this is the description this is the description")
-//                }
-//            }
-//        )
-//    }
-//}
-//
+@Composable
+fun PostCaption(
+    modifier: Modifier = Modifier,
+    post: Post
+){
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .padding(horizontal = 10.dp)
+        ,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = buildAnnotatedString {
+                val boldStyle = SpanStyle(
+                    color = MaterialTheme.colors.textColor,
+                    fontWeight = Bold,
+                    fontSize = 14.sp
+                )
+                val normalStyle = SpanStyle(
+                    color = MaterialTheme.colors.textColor,
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 14.sp
+                )
+                pushStyle(boldStyle)
+                append(post.user.name)
+                append(" ")
+                if (post.caption.isNotEmpty()){
+                    pushStyle(normalStyle)
+                    append(post.caption)
+                }
+            }
+        )
+    }
+}
+
+ @Composable
+ fun PostCommentsCount(
+     modifier: Modifier = Modifier,
+     post: Post
+ ) {
+     Row(
+         modifier = modifier
+             .fillMaxWidth()
+             .wrapContentHeight()
+             .padding(horizontal = 10.dp),
+         verticalAlignment = Alignment.CenterVertically
+     ) {
+         Text(
+             text = "View all ${post.commentsCount} comments",
+             color = MaterialTheme.colors.lightGrey,
+             fontWeight = FontWeight.Normal,
+             fontSize = 14.sp
+         )
+     }
+
+ }
+
+ @Composable
+ fun PostTimeStamp(
+     modifier: Modifier = Modifier,
+     post: Post
+ ) {
+     Row(
+         modifier = modifier
+             .fillMaxWidth()
+             .wrapContentHeight()
+             .padding(horizontal = 10.dp),
+         verticalAlignment = Alignment.CenterVertically
+     ) {
+         Text(
+             text = "${post.timeStamp} hours ago ",
+             color = MaterialTheme.colors.lightGrey,
+             fontSize = 10.sp,
+             fontWeight = FontWeight.Light
+         )
+     }
+
+ }
+
 //@Composable
 //fun ExpandableText(
 //    text: String,

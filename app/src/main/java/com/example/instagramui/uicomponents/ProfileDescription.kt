@@ -3,6 +3,7 @@ package com.example.instagramui.uicomponents
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -12,6 +13,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.instagramui.ui.theme.textColor
 
 @Composable
 fun ProfileDescription(
@@ -32,24 +34,27 @@ fun ProfileDescription(
             text = displayName,
             fontWeight = FontWeight.Bold,
             letterSpacing = letterSpacing,
-            lineHeight = lineHeight
+            lineHeight = lineHeight,
+            color = MaterialTheme.colors.textColor
         )
         Text(
             text = description,
             letterSpacing = letterSpacing,
-            lineHeight = lineHeight
+            lineHeight = lineHeight,
+            color = MaterialTheme.colors.textColor
         )
         Text(
             text = url,
-            color = Color(0xFF3D3D91),
+            color = MaterialTheme.colors.textColor,
             letterSpacing = letterSpacing,
-            lineHeight = lineHeight
+            lineHeight = lineHeight,
+
         )
         if(followedBy.isNotEmpty()){
             Text(
                 text = buildAnnotatedString {
                     val boldStyle = SpanStyle(
-                        color = Color.Black,
+                        color = MaterialTheme.colors.textColor,
                         fontWeight = FontWeight.Bold
                     )
                     append("Followed by ")

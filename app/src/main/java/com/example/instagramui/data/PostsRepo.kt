@@ -4,7 +4,9 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import com.example.instagramui.models.Post
 import com.example.instagramui.models.User
+import com.example.instagramui.models.caption
 import com.example.instagramui.models.names
+import kotlin.random.Random
 
 object PostsRepo {
 
@@ -22,7 +24,10 @@ object PostsRepo {
                     username = names[index],
                     image = "https://randomuser.me/api/portraits/men/${index + 1}.jpg"
                 ),
-                likesCount = index+100 ,
+                likesCount = Random.nextInt(100,400) ,
+                caption = caption[index],
+                commentsCount = Random.nextInt(10,50),
+                timeStamp = Random.nextInt(1,12)
             )
             posts.add(post)
         }

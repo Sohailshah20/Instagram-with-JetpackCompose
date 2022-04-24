@@ -2,18 +2,20 @@ package com.example.instagramui
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.height
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.instagramui.destinations.Destination
+import com.example.instagramui.ui.theme.backgroundColor
+import com.example.instagramui.ui.theme.textColor
+import com.example.instagramui.uicomponents.RoundImage
 import com.ramcosta.composedestinations.navigation.navigateTo
 
 @ExperimentalFoundationApi
@@ -26,7 +28,7 @@ fun BottomNavGraph(
     BottomNavigation(
                 modifier = Modifier
             .height(46.dp),
-        backgroundColor = Color.White,
+        backgroundColor = MaterialTheme.colors.background
         )
     {
         BottomBarDestinations.values().forEach { destination ->
@@ -42,8 +44,8 @@ fun BottomNavGraph(
                     Icon(painterResource(destination.icon),
                         contentDescription = destination.title)
                 },
-                selectedContentColor = Color.Black,
-                unselectedContentColor = Color.Black.copy(0.4f),
+                selectedContentColor = MaterialTheme.colors.textColor,
+                unselectedContentColor = MaterialTheme.colors.textColor.copy(0.4f),
             )
         }
     }

@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.Scaffold
 import androidx.navigation.compose.rememberNavController
+import com.example.instagramui.ui.theme.InstagramUiTheme
 import com.ramcosta.composedestinations.DestinationsNavHost
 
 @ExperimentalFoundationApi
@@ -13,6 +14,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            InstagramUiTheme{
             val navController = rememberNavController()
             Scaffold(
                 bottomBar = {
@@ -24,8 +26,9 @@ class MainActivity : ComponentActivity() {
                     navGraph = NavGraphs.root
 
                 )
-            }
+                }
             }
         }
     }
+}
 

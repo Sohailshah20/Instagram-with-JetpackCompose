@@ -17,6 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.instagramui.ui.theme.backgroundColor
+import com.example.instagramui.ui.theme.lightGrey
 import com.example.instagramui.ui.theme.textColor
 
 @Composable
@@ -31,10 +32,9 @@ fun ActionButton(
         modifier = modifier
             .border(
                 width = 1.dp,
-                color = Color.LightGray,
+                color = MaterialTheme.colors.lightGrey,
                 shape = RoundedCornerShape(5.dp)
             )
-            .background(color = MaterialTheme.colors.backgroundColor)
 //            .padding(6.dp)
     ) {
         if (text != null){

@@ -1,5 +1,6 @@
 package com.example.instagramui.ui.theme
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.Colors
 import androidx.compose.ui.graphics.Color
 
@@ -13,3 +14,6 @@ val Colors.textColor: Color
 
 val Colors.backgroundColor: Color
     get() = if (isLight) Color.White else Color.Black
+
+val Colors.lightGrey: Color
+    get() = Color(0xFF8E8E8E)

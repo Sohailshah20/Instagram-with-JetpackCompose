@@ -40,7 +40,6 @@ fun ProfileScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(Color.White)
     ) {
      MyTopAppBar(userName = "Sohail Shah")
      Spacer(modifier = Modifier.height(4.dp))

@@ -16,6 +16,8 @@ import com.example.instagramui.models.ImageWithText
 import com.example.instagramui.R
 import com.example.instagramui.data.PostsRepo
 import com.example.instagramui.models.Post
+import com.example.instagramui.ui.theme.backgroundColor
+import com.example.instagramui.ui.theme.textColor
 import com.example.instagramui.uicomponents.HighlightsSection
 import com.example.instagramui.uicomponents.PostItem
 import com.ramcosta.composedestinations.annotation.Destination
@@ -34,7 +36,8 @@ fun HomeScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(MaterialTheme.colors.background),
+
     ) {
         HomeScreenTopAppBar()
         Spacer(modifier = Modifier.height(4.dp))
@@ -85,21 +88,21 @@ fun HomeScreenTopAppBar(
                 Icon(
                     painter = painterResource(id = com.example.instagramui.R.drawable.ic_ig_logo),
                     contentDescription = "bell",
-                    tint = Color.Black,
+                    tint = MaterialTheme.colors.onBackground,
                     modifier = modifier.size(100.dp)
 
                 )
             }
 
         },
-        backgroundColor = Color.White,
+        backgroundColor = MaterialTheme.colors.backgroundColor,
         elevation = 0.dp,
         actions = {
             IconButton(onClick = {}) {
                 Icon(
                     painter = painterResource(id = com.example.instagramui.R.drawable.ic_add),
                     contentDescription = "bell",
-                    tint = Color.Black,
+                    tint = MaterialTheme.colors.onBackground,
                     modifier = modifier.size(24.dp)
 
                 )
@@ -108,7 +111,7 @@ fun HomeScreenTopAppBar(
                 Icon(
                     painter = painterResource(id = com.example.instagramui.R.drawable.ic_messenger),
                     contentDescription = "dot menu  ",
-                    tint = Color.Black,
+                    tint = MaterialTheme.colors.onBackground,
                     modifier = modifier.size(24.dp)
 
                 )

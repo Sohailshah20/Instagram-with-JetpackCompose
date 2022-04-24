@@ -22,18 +22,17 @@ fun PostTabView(
     var selectedTabIndex by remember {
         mutableStateOf(0)
     }
-    val inactiveColor = Color(0xFF777777)
     TabRow(
         selectedTabIndex = selectedTabIndex,
-        backgroundColor = Color.Transparent,
+        backgroundColor = MaterialTheme.colors.background,
         contentColor =  MaterialTheme.colors.textColor,
         modifier = modifier
     ) {
         imageWithText.forEachIndexed{ index, item ->
             Tab(
                 selected = selectedTabIndex == index,
-                selectedContentColor = Color.Black,
-                unselectedContentColor = inactiveColor,
+                selectedContentColor = MaterialTheme.colors.textColor,
+                unselectedContentColor = MaterialTheme.colors.textColor.copy(0.4f),
                 onClick = {
                     selectedTabIndex = index
                     onTabsSelected(index)
@@ -42,7 +41,7 @@ fun PostTabView(
                 Icon(
                     painter = item.image,
                     contentDescription = item.text,
-                    tint = if(selectedTabIndex == index) Color.Black else inactiveColor,
+                    tint = MaterialTheme.colors.textColor,
                     modifier = Modifier
                         .padding(10.dp)
                         .size(24.dp)
