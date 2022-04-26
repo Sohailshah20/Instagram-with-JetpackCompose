@@ -35,18 +35,21 @@ fun ProfileDescription(
             fontWeight = FontWeight.Bold,
             letterSpacing = letterSpacing,
             lineHeight = lineHeight,
+            fontSize = 14.sp,
             color = MaterialTheme.colors.textColor
         )
         Text(
             text = description,
             letterSpacing = letterSpacing,
             lineHeight = lineHeight,
+            fontSize = 14.sp,
             color = MaterialTheme.colors.textColor
         )
         Text(
             text = url,
             color = MaterialTheme.colors.textColor,
             letterSpacing = letterSpacing,
+            fontSize = 14.sp,
             lineHeight = lineHeight,
 
         )
@@ -55,7 +58,8 @@ fun ProfileDescription(
                 text = buildAnnotatedString {
                     val boldStyle = SpanStyle(
                         color = MaterialTheme.colors.textColor,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 14.sp
                     )
                     append("Followed by ")
                     followedBy.forEachIndexed{ index, name ->
@@ -73,7 +77,8 @@ fun ProfileDescription(
                     }
                 },
                 letterSpacing = letterSpacing,
-                lineHeight = lineHeight
+                lineHeight = lineHeight,
+                fontSize = 14.sp
             )
         }
 

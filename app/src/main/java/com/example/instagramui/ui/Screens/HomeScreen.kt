@@ -4,6 +4,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -12,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberImagePainter
 import com.example.instagramui.models.ImageWithText
 import com.example.instagramui.R
 import com.example.instagramui.data.PostsRepo
@@ -41,32 +43,12 @@ fun HomeScreen(
     ) {
         HomeScreenTopAppBar()
         Spacer(modifier = Modifier.height(4.dp))
-        HighlightsSection(
-        highlights = listOf(
-            ImageWithText(
-                image = painterResource(id = R.drawable.twitter),
-                text = "Elon Musk"
-            ),
-            ImageWithText(
-                image = painterResource(id = R.drawable.instagram),
-                text = "Jack Dorsey"
-            ),
-            ImageWithText(
-                image = painterResource(id = R.drawable.whatsapp),
-                text = "Sundar"
-            ),
-            ImageWithText(
-                image = painterResource(id = R.drawable.snapchat),
-                text = "Jeff Bezos"
-            ),
-            ImageWithText(
-                image = painterResource(id = R.drawable.reddit),
-                text = "Reddit"
-            )
-        ),
-        modifier = Modifier
-            .fillMaxWidth(),
-        )
+        LazyRow{
+               itemsIndexed(posts){_, post ->
+                   HighlightsSection(image = rememberImagePainter(post.user.image),
+                   text = post.user.name)
+               }
+        }
         Spacer(modifier = Modifier.height(10.dp))
         Divider(thickness = 0.5.dp)
         LazyColumn{

@@ -3,6 +3,10 @@ package com.example.instagramui
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.GridCells
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.LazyVerticalGrid
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -13,6 +17,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -20,20 +25,27 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.rememberImagePainter
+import com.example.instagramui.data.PostsRepo
 import com.example.instagramui.models.ImageWithText
+import com.example.instagramui.models.Post
+import com.example.instagramui.models.currentUser
+import com.example.instagramui.ui.Screens.MyTopAppBar
 import com.example.instagramui.ui.theme.backgroundColor
 import com.example.instagramui.ui.theme.textColor
 import com.example.instagramui.uicomponents.*
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import kotlin.random.Random
 
 @ExperimentalFoundationApi
 @Destination
 @Composable
 fun ProfileScreen(
     navigator: DestinationsNavigator,
-    modifier: Modifier = Modifier
-){
+    modifier: Modifier = Modifier,
+) {
+    val posts by PostsRepo.posts
     var selectedTabIndex by remember {
         mutableStateOf(0)
     }
@@ -41,40 +53,18 @@ fun ProfileScreen(
         modifier = modifier
             .fillMaxSize()
     ) {
-     MyTopAppBar(userName = "Sohail Shah")
-     Spacer(modifier = Modifier.height(4.dp))
-     ProfileSection()
+        MyTopAppBar(userName = currentUser.name)
+        Spacer(modifier = Modifier.height(4.dp))
+        ProfileSection()
         Spacer(modifier = Modifier.height(25.dp))
-        ButtonSection(modifier =  Modifier.fillMaxWidth())
+        ButtonSection(modifier = Modifier.fillMaxWidth())
         Spacer(modifier = Modifier.height(25.dp))
-        HighlightsSection(
-            highlights = listOf(
-                ImageWithText(
-                    image = painterResource(id = R.drawable.twitter),
-                    text = "Twitter"
-                ),
-                ImageWithText(
-                    image = painterResource(id = R.drawable.instagram),
-                    text = "Instagram"
-                ),
-                ImageWithText(
-                    image = painterResource(id = R.drawable.whatsapp),
-                    text = "Whatsapp"
-                ),
-                ImageWithText(
-                    image = painterResource(id = R.drawable.snapchat),
-                    text = "Snapchat"
-                ),
-                ImageWithText(
-                    image = painterResource(id = R.drawable.reddit),
-                    text = "Reddit"
-                )
-            ),
-            modifier = Modifier
-                .fillMaxWidth()
-
-
-        )
+        LazyRow {
+            itemsIndexed(posts) { _, post ->
+                HighlightsSection(image = rememberImagePainter(post.image),
+                    text = post.caption.split(" ")[0])
+            }
+        }
         Spacer(modifier = Modifier.height(10.dp))
         PostTabView(
             imageWithText = listOf(
@@ -95,32 +85,26 @@ fun ProfileScreen(
                     text = "Profile"
                 ),
             )
-        ){
+        ) {
             selectedTabIndex = it
         }
-        when(selectedTabIndex){
-            0 -> PostsSection(
-                posts = listOf(
-                    painterResource(id = R.drawable.profile),
-                    painterResource(id = R.drawable.post1),
-                    painterResource(id = R.drawable.post2),
-                    painterResource(id = R.drawable.post3),
-                    painterResource(id = R.drawable.post4),
-                    painterResource(id = R.drawable.post5),
-                    painterResource(id = R.drawable.post6),
-                    painterResource(id = R.drawable.post7),
-                    painterResource(id = R.drawable.post8),
-                    painterResource(id = R.drawable.post9),
-                    painterResource(id = R.drawable.post10),
-                    painterResource(id = R.drawable.post11),
-                    painterResource(id = R.drawable.post12),
-                    painterResource(id = R.drawable.post13),
-                    painterResource(id = R.drawable.post14),
-                ),
-                modifier = Modifier.fillMaxWidth()
-            )
-        }
+        when (selectedTabIndex) {
+            0 -> {
+                LazyVerticalGrid(
+                    cells = GridCells.Fixed(3),
+                    modifier = modifier
+                        .scale(1.01f)
+                ) {
+                    itemsIndexed(posts) { _, post ->
+                        PostsSection(
+                            image = rememberImagePainter(post.image),
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
 
+                }
+            }
+        }
     }
 }
 
@@ -205,7 +189,7 @@ fun ProfileSection(
             StatSection(
                 modifier = Modifier
                     .weight(7f))
-            
+
         }
         Spacer(modifier = Modifier.height(4.dp))
         ProfileDescription(
@@ -229,8 +213,8 @@ fun StatSection(
         modifier = modifier
     ) {
         ProfileStat(numberText = "15", textDesc = "Posts")
-        ProfileStat(numberText = "100K", textDesc = "Followers")
-        ProfileStat(numberText = "0", textDesc = "Following")
+        ProfileStat(numberText = Random.nextInt(500,1000).toString(), textDesc = "Followers")
+        ProfileStat(numberText = Random.nextInt(50,100).toString(), textDesc = "Following")
     }
 }
 
@@ -270,6 +254,7 @@ fun ButtonSection(
 //        )
     }
 }
+
 
 //@ExperimentalFoundationApi
 //@Composable

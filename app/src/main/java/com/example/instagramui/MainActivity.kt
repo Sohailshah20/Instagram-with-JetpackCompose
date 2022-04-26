@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.Scaffold
 import androidx.navigation.compose.rememberNavController
+import com.example.instagramui.ui.Screens.MainScreen
 import com.example.instagramui.ui.theme.InstagramUiTheme
 import com.ramcosta.composedestinations.DestinationsNavHost
 
@@ -15,18 +16,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             InstagramUiTheme{
-            val navController = rememberNavController()
-            Scaffold(
-                bottomBar = {
-                    BottomNavGraph(navController)
-                }
-            ) {
-                DestinationsNavHost(
-                    navController = navController,
-                    navGraph = NavGraphs.root
-
-                )
-                }
+                    MainScreen()
             }
         }
     }

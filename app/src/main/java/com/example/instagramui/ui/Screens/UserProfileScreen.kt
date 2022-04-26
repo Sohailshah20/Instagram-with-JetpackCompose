@@ -5,10 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.KeyboardArrowDown
@@ -23,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.instagramui.R
 import com.example.instagramui.models.ImageWithText
+import com.example.instagramui.ui.theme.textColor
 import com.example.instagramui.uicomponents.*
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -51,31 +49,31 @@ fun UserProfileScreen(
         Spacer(modifier = Modifier.height(25.dp))
         UserButtonSection(modifier =  Modifier.fillMaxWidth())
         Spacer(modifier = Modifier.height(25.dp))
-        HighlightsSection(highlights = listOf(
-            ImageWithText(
-                image = painterResource(id = R.drawable.twitter),
-                text = "Twitter"
-            ),
-            ImageWithText(
-                image = painterResource(id = R.drawable.instagram),
-                text = "Instagram"
-            ),
-            ImageWithText(
-                image = painterResource(id = R.drawable.whatsapp),
-                text = "Whatsapp"
-            ),
-            ImageWithText(
-                image = painterResource(id = R.drawable.snapchat),
-                text = "Snapchat"
-            ),
-            ImageWithText(
-                image = painterResource(id = R.drawable.reddit),
-                text = "Reddit"
-            )
-        ),
-            modifier = Modifier
-                .fillMaxWidth()
-        )
+//        HighlightsSection(highlights = listOf(
+//            ImageWithText(
+//                image = painterResource(id = R.drawable.twitter),
+//                text = "Twitter"
+//            ),
+//            ImageWithText(
+//                image = painterResource(id = R.drawable.instagram),
+//                text = "Instagram"
+//            ),
+//            ImageWithText(
+//                image = painterResource(id = R.drawable.whatsapp),
+//                text = "Whatsapp"
+//            ),
+//            ImageWithText(
+//                image = painterResource(id = R.drawable.snapchat),
+//                text = "Snapchat"
+//            ),
+//            ImageWithText(
+//                image = painterResource(id = R.drawable.reddit),
+//                text = "Reddit"
+//            )
+//        ),
+//            modifier = Modifier
+//                .fillMaxWidth()
+//        )
         Spacer(modifier = Modifier.height(10.dp))
         PostTabView(
             imageWithText = listOf(
@@ -100,26 +98,26 @@ fun UserProfileScreen(
             selectedTabIndex = it
         }
         when(selectedTabIndex){
-            0 -> PostsSection(
-                posts = listOf(
-                    painterResource(id = R.drawable.profile),
-                    painterResource(id = R.drawable.post1),
-                    painterResource(id = R.drawable.post2),
-                    painterResource(id = R.drawable.post3),
-                    painterResource(id = R.drawable.post4),
-                    painterResource(id = R.drawable.post5),
-                    painterResource(id = R.drawable.post6),
-                    painterResource(id = R.drawable.post7),
-                    painterResource(id = R.drawable.post8),
-                    painterResource(id = R.drawable.post9),
-                    painterResource(id = R.drawable.post10),
-                    painterResource(id = R.drawable.post11),
-                    painterResource(id = R.drawable.post12),
-                    painterResource(id = R.drawable.post13),
-                    painterResource(id = R.drawable.post14),
-                ),
-                modifier = Modifier.fillMaxWidth()
-            )
+//            0 -> PostsSection(
+//                posts = listOf(
+//                    painterResource(id = R.drawable.profile),
+//                    painterResource(id = R.drawable.post1),
+//                    painterResource(id = R.drawable.post2),
+//                    painterResource(id = R.drawable.post3),
+//                    painterResource(id = R.drawable.post4),
+//                    painterResource(id = R.drawable.post5),
+//                    painterResource(id = R.drawable.post6),
+//                    painterResource(id = R.drawable.post7),
+//                    painterResource(id = R.drawable.post8),
+//                    painterResource(id = R.drawable.post9),
+//                    painterResource(id = R.drawable.post10),
+//                    painterResource(id = R.drawable.post11),
+//                    painterResource(id = R.drawable.post12),
+//                    painterResource(id = R.drawable.post13),
+//                    painterResource(id = R.drawable.post14),
+//                ),
+//                modifier = Modifier.fillMaxWidth()
+//            )
         }
 
     }
@@ -138,6 +136,7 @@ fun MyTopAppBar(
                     overflow = TextOverflow.Ellipsis,
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
+                    color = MaterialTheme.colors.textColor
                 )
 //                Icon(
 //                    imageVector = Icons.Default.ArrowDropDown,
@@ -146,14 +145,14 @@ fun MyTopAppBar(
             }
 
         },
-        backgroundColor = Color.White,
+        backgroundColor = MaterialTheme.colors.background,
         elevation = 0.dp,
         navigationIcon = {
             IconButton(onClick = {}) {
                 Icon(
                     imageVector = Icons.Default.ArrowBack,
                     contentDescription = "back",
-                    tint = Color.Black,
+                    tint = MaterialTheme.colors.textColor
 
                     )
             }
@@ -161,9 +160,9 @@ fun MyTopAppBar(
         actions = {
             IconButton(onClick = {}) {
                 Icon(
-                    painter = painterResource(id = R.drawable.bell_icon),
+                    painter = painterResource(id = R.drawable.ic_add),
                     contentDescription = "bell",
-                    tint = Color.Black,
+                    tint = MaterialTheme.colors.textColor,
                     modifier = modifier.size(24.dp)
 
                 )
@@ -172,8 +171,8 @@ fun MyTopAppBar(
                 Icon(
                     painter = painterResource(id = R.drawable.ic_baseline_menu_24),
                     contentDescription = "dot menu  ",
-                    tint = Color.Black,
-                    modifier = modifier.size(18.dp)
+                    tint = MaterialTheme.colors.textColor,
+                    modifier = modifier.size(24.dp)
 
                 )
             }
