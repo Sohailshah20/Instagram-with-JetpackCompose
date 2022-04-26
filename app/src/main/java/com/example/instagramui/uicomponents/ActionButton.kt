@@ -31,8 +31,8 @@ fun ActionButton(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .border(
-                width = 1.dp,
-                color = MaterialTheme.colors.lightGrey,
+                width = 0.5.dp,
+                color = MaterialTheme.colors.lightGrey.copy(alpha = 0.4f),
                 shape = RoundedCornerShape(5.dp)
             )
 //            .padding(6.dp)
